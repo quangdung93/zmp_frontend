@@ -62,30 +62,30 @@ const DeliveryMethodPicker = ({ children, onReturn, onOpen }) => {
                 <Icon zmp="zi-close" size={24}></Icon>
               </Button>
               <ActionsLabel bold>
-                <span className="title">Chọn phương thức nhận hàng</span>
+                <span className="title">Chọn phương thức lắp đặt</span>
               </ActionsLabel>
             </ActionsGroup>
             <ActionsGroup>
-              <ActionsButton className={shipping ? 'inactive' : 'active'} onClick={() => store.dispatch('ship', false)}>
-                <Avatar src={pickup} />
-                <div className="description mr-2">
-                  <Text bold fontSize="16" className="text-primary my-1">Tự đến lấy</Text>
-                  <Text className="text-secondary ellipsis">
-                    {selectedShop.name} - {selectedShop.address}
-                  </Text>
-                </div>
-                <Button typeName="secondary" onClick={e => showDetail(e, false)}>Sửa</Button>
-              </ActionsButton>
               <ActionsButton className={shipping ? 'active' : 'inactive'} onClick={handleShipping} close={false}>
                 <Avatar src={delivery} />
                 <div className="description">
-                  <Text bold fontSize="16" className="text-primary my-1">Giao tận nơi</Text>
+                  <Text bold fontSize="16" className="text-primary my-1">Lắp đặt tận nơi</Text>
                   {selectedAddress ? <>
                     <Text className="mb-0" bold>{selectedAddress.name} - {selectedAddress.phone}</Text>
                     <Text>{selectedAddress.address}</Text>
                   </> : <Text className="text-secondary">Tài xế giao đến địa chỉ của bạn</Text>}
                 </div>
                 <Button typeName="secondary" onClick={e => showDetail(e, true)}>Sửa</Button>
+              </ActionsButton>
+              <ActionsButton className={shipping ? 'inactive' : 'active'} onClick={() => store.dispatch('ship', false)}>
+                <Avatar src={pickup} />
+                <div className="description mr-2">
+                  <Text bold fontSize="16" className="text-primary my-1">Tự lắp đặt</Text>
+                  <Text className="text-secondary ellipsis">
+                    {selectedShop.name} - {selectedShop.address}
+                  </Text>
+                </div>
+                <Button typeName="secondary" onClick={e => showDetail(e, false)}>Sửa</Button>
               </ActionsButton>
             </ActionsGroup></> : (shipping ? <AddressPicker onBack={() => setMode('summary')} /> : <ShopPicker onBack={() => setMode('summary')} />)
         }

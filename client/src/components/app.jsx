@@ -11,7 +11,7 @@ const MyApp = () => {
 
   // ZMP Parameters
   const zmpparams = {
-    name: 'Coffee Shop', // App name
+    name: 'FPT Shop', // App name
     theme: 'auto', // Automatic theme detection
     // App store
     store: store,

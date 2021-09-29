@@ -5,18 +5,16 @@ import store from '../store'
 import '../css/product-order.scss'
 
 const ProductOrder = ({ product, children, cartItem, cartIndex }) => {
-  const { name, price, image, sizes, toppings } = product
+  const { name, price, image, sizes } = product
   const [showOrder, setShowOrder] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(sizes[0])
-  const [topping, setTopping] = useState()
   const [note, setNote] = useState('')
 
   useEffect(() => {
     if (cartItem) {
       setQuantity(cartItem.quantity)
       setSize(cartItem.size)
-      setTopping(cartItem.topping)
       setNote(cartItem.note)
     }
   }, [showOrder])
@@ -34,18 +32,14 @@ const ProductOrder = ({ product, children, cartItem, cartIndex }) => {
     if (size) {
       subtotal += size.extra
     }
-    if (topping) {
-      subtotal += topping.extra
-    }
     subtotal *= quantity
     return subtotal
-  }, [quantity, size, topping])
+  }, [quantity, size])
 
   const order = () => {
     const item = {
       quantity,
       size,
-      topping,
       subtotal,
       note,
       product
@@ -104,7 +98,7 @@ const ProductOrder = ({ product, children, cartItem, cartIndex }) => {
             <Icon zmp="zi-close" size={24}></Icon>
           </Button>
           <ActionsLabel bold>
-            <span className="title">Chọn thức uống</span>
+            <span className="title">Giỏ hàng</span>
           </ActionsLabel>
         </ActionsGroup>
         <ActionsGroup>
@@ -118,18 +112,10 @@ const ProductOrder = ({ product, children, cartItem, cartIndex }) => {
             </Row>
           </ActionsLabel>
           <ActionsLabel className="p-0 text-left">
-            <Box><Text bold>Chọn Size</Text></Box>
+            <Box><Text bold>Chọn Loại</Text></Box>
             <List className="my-0">
               {sizes.map(s => <ListItem key={s.name} radio value={s.name} name="s" title={s.name} checked={size === s} onClick={() => setSize(s)}>
                 {s.extra && <ExtraPrice amount={s.extra} />}
-              </ListItem>)}
-            </List>
-          </ActionsLabel>
-          <ActionsLabel className="p-0 text-left">
-            <Box><Text bold>Chọn Topping</Text></Box>
-            <List className="my-0">
-              {toppings.map(t => <ListItem key={t.name} radio value={t.name} name="t" title={t.name} checked={topping === t} onClick={() => setTopping(t)}>
-                {t.extra && <ExtraPrice amount={t.extra} />}
               </ListItem>)}
             </List>
           </ActionsLabel>

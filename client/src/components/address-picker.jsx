@@ -74,12 +74,12 @@ const AddressPicker = ({ onBack }) => {
           <Icon zmp="zi-arrow-left" size={24}></Icon>
         </Button>
         <ActionsLabel bold>
-          <span className="title">Chọn địa chỉ nhận hàng</span>
+          <span className="title">Chọn địa chỉ lắp đặt</span>
         </ActionsLabel>
       </ActionsGroup>
       <ActionsGroup>
         {showForm || selectableAddresses.length === 0 ? <ActionsLabel className="p-0">
-          <Box className="text-left"><Text bold>Thêm địa chỉ nhận hàng</Text></Box>
+          <Box className="text-left"><Text bold>Thêm địa chỉ lắp đặt</Text></Box>
           <List className="my-0">
             <ListItem className="editable-info">
               <Box slot="root-start" className="label">Tên người nhận</Box>

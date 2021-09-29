@@ -1,7 +1,7 @@
 import React from 'react'
 import api from 'zmp-sdk'
 import { Avatar, Text, Button, List, ListItem, useStore } from 'zmp-framework/react'
-import pickup from '../static/icons/pickup.svg'
+import pickup from '../static/images/fpt-icon.png'
 import config from '../config'
 import { follow } from '../services/zalo'
 
@@ -34,7 +34,7 @@ const Heading = () => {
       <ListItem>
         <Avatar src={pickup} />
         <div className="ml-4 flex-1">
-          <Text bold className="mb-0">Coffee Shop</Text>
+          <Text bold className="mb-0">FPT shop</Text>
           <Text className="ellipsis mb-0">
             {selectedShop.name} - {selectedShop.address}
           </Text>

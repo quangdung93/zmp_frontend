@@ -12,10 +12,10 @@ const Heading = () => {
   return (
     <List className="m-0">
       <ListItem>
-        <Avatar src={user.picture} />
+        <Avatar src={user.avatar} />
         <div className="flex-1 ml-4">
           <Text bold className="mb-0">{user.name}</Text>
-          <Text className="ellipsis mb-0">ID: {user.zaloId}</Text>
+          <Text className="ellipsis mb-0">ID: {user.id}</Text>
         </div>
       </ListItem>
     </List>
@@ -25,8 +25,8 @@ const Heading = () => {
 const Empty = () => <Box className="d-flex h-100 h-center v-center text-center">
   <Box>
     <Text bold>Bạn chưa có đơn hàng!</Text>
-    <Text className="text-secondary mt-4 mb-8">Hãy đặt món để thưởng thức dịch vụ hấp dẫn tại Coffee Shop nhé!</Text>
-    <Button className="m-auto" typeName="primary" onClick={() => zmp.views.main.router.navigate('/')} large>Đặt món ngay</Button>
+    <Text className="text-secondary mt-4 mb-8">Hãy một dịch vụ để tận hưởng chất lượng của FPT nhé!</Text>
+    <Button className="m-auto" typeName="primary" onClick={() => zmp.views.main.router.navigate('/')} large>Chọn dịch vụ ngay</Button>
   </Box>
 </Box>
 
@@ -36,7 +36,7 @@ const Orders = () => {
   return (
     <Box m={4}>
       <Text bold className="my-4">Lịch sử đơn hàng</Text>
-      {orders.map((order) => <Box key={order._id} mx={0} my={2}><PlacedOrder order={order} /></Box>)}
+      {orders.map((order) => <Box key={order.id} mx={0} my={2}><PlacedOrder order={order} /></Box>)}
     </Box>
   )
 }

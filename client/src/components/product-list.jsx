@@ -21,11 +21,11 @@ const ProductList = () => {
           <Col><SkeletonBlock effect="wave" height="200px" /></Col>
           <Col><SkeletonBlock effect="wave" height="200px" /></Col>
         </Row>
-      </Box> : <>{productGroups.map(({ _id: groupName, products }) => <Box key={groupName} m={0}>
+      </Box> : <>{productGroups.map(({ _id: groupName, products }, index) => <Box key={index} m={0}>
         <Title className="px-4 pb-2" bold>{groupName}</Title>
         <Box className="product-row">
           <Row style={{ width: `calc(${products.length * 50}vw - ${products.length * 20}px + ${(products.length - 1) * 8}px)` }}>
-            {products.map(product => <Col key={product._id} className="product-column">
+            {products.map(product => <Col key={product.id} className="product-column">
               <Product {...product} />
             </Col>)}
           </Row>

@@ -17,7 +17,7 @@ const BottomNavigation = () => {
   })
 
   const links = [
-    { name: 'Đặt món', href: '/', icon: cup },
+    { name: 'Shop', href: '/', icon: cup },
     { name: 'Ưu đãi', href: '/discount', icon: discount },
     { name: 'Lịch sử', href: '/history', icon: history },
   ]

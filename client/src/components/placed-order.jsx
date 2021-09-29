@@ -5,7 +5,7 @@ import { Price } from './prices'
 import '../css/discount.scss'
 
 const PlacedOrder = ({ order }) => {
-  const { cart, createdAt, selectedDiscount, total, shipping, shop, address } = order
+  const { detail, created_at, discount, total, shipping, shop, address, name, phone } = order
 
   const reOrder = () => {
     zmp.views.main.router.navigate('/')
@@ -14,21 +14,21 @@ const PlacedOrder = ({ order }) => {
 
   return (
     <Card className="discount-card" inset>
-      <img className="discount-image" src={cart[0].product.image} />
+      <img className="discount-image" src={detail[0].image} />
       <div className="discount-summary">
         <Text className="text-secondary">
-          {new Date(createdAt).toLocaleDateString()} - {new Date(createdAt).toLocaleTimeString()}
+          {new Date(created_at).toLocaleDateString()} - {new Date(created_at).toLocaleTimeString()}
         </Text>
         {shipping ?
           (address && <>
-            <Text bold>{address.name} - {address.phone}</Text>
-            <Text>{address.address}</Text></>
+            <Text bold>{name} - {phone}</Text>
+            <Text>{address}</Text></>
           ) :
-          <Text bold>{shop.name}</Text>
+          <Text bold>{shop}</Text>
         }
         <div className="d-flex">
           <Price bold amount={total} />
-          {selectedDiscount && <Text className="text-secondary">&nbsp;- {selectedDiscount}</Text>}
+          {discount && <Text className="text-secondary">&nbsp;- {discount}</Text>}
         </div>
         <Button fill responsive onClick={reOrder}>Đặt lại</Button>
       </div>

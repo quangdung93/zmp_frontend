@@ -19,11 +19,11 @@ export const request = async (method, url, data) => {
 
 export const login = async (accessToken) => {
   try {
-    const response = await (await request('POST', 'users/login', {
+    const response = await (await request('POST', 'api/login_zalo', {
       accessToken
     })).json()
-    if (response.data.jwt) {
-      store.dispatch('setJwt', response.data.jwt)
+    if (response.access_token) {
+      store.dispatch('setJwt', response.access_token)
       return true
     } else {
       return false
@@ -36,7 +36,7 @@ export const login = async (accessToken) => {
 
 export const getCurrentUser = async () => {
   try {
-    const response = await (await request('GET', 'users/logged-in')).json()
+    const response = await (await request('GET', 'api/zalo/user-profile')).json()
     return response.data
   } catch (error) {
     console.log('Error get current user info. Details: ', error)
@@ -46,7 +46,7 @@ export const getCurrentUser = async () => {
 
 export const getProductsByCategory = async () => {
   try {
-    const response = await (await request('GET', 'products/by-category')).json()
+    const response = await (await request('GET', 'api/zalo/products/by-category')).json()
     return response.data
   } catch (error) {
     console.log('Error fetching products. Details: ', error)
@@ -67,7 +67,7 @@ export const updateFollowStatus = async (status) => {
 
 export const checkout = async (payload) => {
   try {
-    const response = await request('POST', 'orders/checkout', payload)
+    const response = await request('POST', 'api/zalo/orders/checkout', payload)
     const data = await response.json()
     return data
   } catch (error) {
@@ -78,7 +78,7 @@ export const checkout = async (payload) => {
 
 export const getPlacedOrders = async () => {
   try {
-    const response = await (await request('GET', 'orders/history')).json()
+    const response = await (await request('GET', 'api/zalo/orders/history')).json()
     return response.data ?? []
   } catch (error) {
     console.log('Error fetching placed orders. Details: ', error)

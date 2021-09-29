@@ -71,7 +71,7 @@ const Checkout = ({ children, onReturn }) => {
         <ActionsGroup>
           <ActionsLabel className="p-0">
             <Box className="text-left">
-              <Text bold>Phương thức nhận hàng</Text>
+              <Text bold>Phương thức lắp đặt</Text>
             </Box>
             <DeliveryMethodPicker onOpen={() => setShowCheckout(false)} onReturn={() => setShowCheckout(true)}>
               <List className="my-0">
@@ -79,7 +79,7 @@ const Checkout = ({ children, onReturn }) => {
                   {shipping ? <Avatar slot="media" src={deliveryIcon} size="24" /> : <Avatar slot="media" src={shop} size="24" />}
                   <Icon slot="content" zmp="zi-chevron-right" />
                   {shipping ? <Box className="text-left">
-                    <Text bold fontSize="16">Giao tận nơi</Text>
+                    <Text bold fontSize="16">Lắp đặt tận nơi</Text>
                     {selectedAddress ? <>
                       <Text bold className="mb-0">{selectedAddress.name} - {selectedAddress.phone}</Text>
                       <Text>{selectedAddress.address}</Text>
@@ -96,7 +96,7 @@ const Checkout = ({ children, onReturn }) => {
             <Box className="text-left"><Text bold>Thông tin khách hàng</Text></Box>
             <List className="my-0">
               <ListItem className="shipping-time">
-                <Box slot="root-start" className="label">Thời gian nhận hàng</Box>
+                <Box slot="root-start" className="label">Thời gian lắp đặt</Box>
                 <Avatar slot="media" src={clockIcon} size="24" />
                 <Icon slot="content" zmp="zi-chevron-right" />
                 <ShippingTimePicker value={shippingTime} onChange={value => store.dispatch('setShippingTime', value)} placeholder="Thời gian nhận hàng" title="Thời gian nhận hàng" className="flex-1" />
@@ -157,7 +157,7 @@ const Checkout = ({ children, onReturn }) => {
                     checked={aggree}
                     onChange={e => setAggree(e.target.checked)}
                     label={<Text className="text-left mb-0" fontSize={12}>
-                      Tôi đồng ý nhận món từ <b>{shippingTime[1]}h{`${shippingTime[2]}`.padStart(2, 0)} - {Number(shippingTime[1]) + 1}h{`${shippingTime[2]}`.padStart(2, 0)}</b>. <a onClick={changeShippingTime} className="text-primary d-inline">Chọn giờ khác.</a>
+                      Tôi đồng ý lắp đặt từ <b>{shippingTime[1]}h{`${shippingTime[2]}`.padStart(2, 0)} - {Number(shippingTime[1]) + 1}h{`${shippingTime[2]}`.padStart(2, 0)}</b>. <a onClick={changeShippingTime} className="text-primary d-inline">Chọn giờ khác.</a>
                     </Text>}
                   />
 

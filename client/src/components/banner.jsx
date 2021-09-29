@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, useStore } from 'zmp-framework/react'
-import backgroundStore from '../static/images/background-store.png'
+import backgroundStore from '../static/images/banner-fpt.jpg'
 import '../css/banner.scss'
 
 const Banner = () => {

@@ -11,7 +11,7 @@ const store = createStore({
     user: null,
     showCheckout: false,
     shipping: false,
-    categories: ['Cà Phê', 'Trà', 'Bánh Ngọt', 'Thức Uống Khác'],
+    categories: ['FPT Camera', 'Internet', 'FPT Playbox', 'FPT Cloud', 'Gói giải trí'],
     loadingProducts: true,
     products: [],
     loadingOrders: true,
@@ -20,8 +20,8 @@ const store = createStore({
     shops: [
       {
         selected: true,
-        name: 'VNG Campus D7',
-        address: 'Lô Z.06 - Đường số 13, KCX Tân Thuận, P. Tân Thuận Đông, Q.7, TP Hồ Chí Minh.',
+        name: 'FPT telecom',
+        address: 'Lô 37-39A, đường 19, KCX Tân Thuận, Phường Tân Thuận Đông, Quận 7',
         open: { hour: 8, minute: 0 },
         close: { hour: 17, minute: 0 }
       }, {
@@ -29,35 +29,20 @@ const store = createStore({
         address: '210 Nguyễn Trãi, Phường Phạm Ngũ Lão, Quận 1, Thành phố Hồ Chí Minh',
         open: { hour: 8, minute: 0 },
         close: { hour: 17, minute: 0 }
-      }, {
-        name: 'Opera House',
-        address: '07 Công Trường Lam Sơn, Bến Nghé, Quận 1, Thành phố Hồ Chí Minh',
-        open: { hour: 8, minute: 0 },
-        close: { hour: 17, minute: 0 }
-      }, {
-        name: 'Sài Gòn Tower',
-        address: '29 Lê Duẩn, Bến Nghé, Quận 1, Thành phố Hồ Chí Minh',
-        open: { hour: 8, minute: 0 },
-        close: { hour: 17, minute: 0 }
-      }, {
-        name: 'Sala 2',
-        address: '125 Nguyễn Cơ Thạch, An Lợi Đông, Quận 2, Thành phố Hồ Chí Minh',
-        open: { hour: 8, minute: 0 },
-        close: { hour: 17, minute: 0 }
       }
     ],
     cart: [],
     discounts: [
       {
-        code: 'GIAM20K',
-        name: 'Ưu đãi 20K! Đặt Coffee Shop trên Zalo.',
+        code: 'GIAM150K',
+        name: 'ƯU ĐÃI THÁNG 9: Miễn phí đến 3 tháng cước và giảm thêm 150.000 đồng khi đăng ký online Internet FPT',
         expireDate: '10/05/2021',
-        image: 'discount-1'
+        image: 'discount-3'
       }, {
         code: 'GIAM35%',
-        name: 'Giảm 35% cho đơn hàng từ 5 món, tối đa 59K...',
+        name: 'Giảm 35% cho gói FPT K+ khi thanh toán từ Zalo',
         expireDate: '10/05/2021',
-        image: 'discount-2'
+        image: 'discount-3'
       }, {
         code: 'GIAM30K',
         name: 'Ưu đãi 30K cho đơn hàng 149K - Áp dụng cho dịch ...',
@@ -199,16 +184,18 @@ const store = createStore({
       state.note = value
     },
     async fetchProducts({ state }) {
-      state.loadingProducts = true
-      const cachedProducts = await loadProductsFromCache()
-      if (cachedProducts.length) {
-        state.products = cachedProducts
+      setTimeout(async() => {
+        state.loadingProducts = true
+        const cachedProducts = await loadProductsFromCache()
+        if (cachedProducts.length) {
+          state.products = cachedProducts
+          state.loadingProducts = false
+        }
+        const products = await getProductsByCategory()
+        state.products = products
+        saveProductsToCache(products)
         state.loadingProducts = false
-      }
-      const products = await getProductsByCategory()
-      state.products = products
-      saveProductsToCache(products)
-      state.loadingProducts = false
+      }, 1000);
     },
     async fetchOrders({ state }) {
       state.loadingOrders = true
