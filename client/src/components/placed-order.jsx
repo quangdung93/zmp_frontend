@@ -5,7 +5,7 @@ import { Price } from './prices'
 import '../css/discount.scss'
 
 const PlacedOrder = ({ order }) => {
-  const { detail, created_at, discount, total, shipping, shop, address, name, phone } = order
+  const { cart, created_at, discount, total, shipping, shop, address, name, phone } = order
 
   const reOrder = () => {
     zmp.views.main.router.navigate('/')
@@ -14,7 +14,7 @@ const PlacedOrder = ({ order }) => {
 
   return (
     <Card className="discount-card" inset>
-      <img className="discount-image" src={detail[0].image} />
+      <img className="discount-image" src={cart[0].image} />
       <div className="discount-summary">
         <Text className="text-secondary">
           {new Date(created_at).toLocaleDateString()} - {new Date(created_at).toLocaleTimeString()}
