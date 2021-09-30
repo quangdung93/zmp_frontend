@@ -6,6 +6,7 @@ const base = config.BASE_URL
 export const request = async (method, url, data) => {
   const headers = { 'Content-Type': 'application/json' }
   const token = store.state.jwt
+  console.log('Token_:' + token);
   if (token) {
     headers.Authorization = `Bearer ${token}`
   }

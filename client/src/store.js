@@ -184,18 +184,19 @@ const store = createStore({
       state.note = value
     },
     async fetchProducts({ state }) {
-      setTimeout(async() => {
-        state.loadingProducts = true
-        const cachedProducts = await loadProductsFromCache()
-        if (cachedProducts.length) {
-          state.products = cachedProducts
-          state.loadingProducts = false
-        }
-        const products = await getProductsByCategory()
-        state.products = products
-        saveProductsToCache(products)
+      state.loadingProducts = true
+      while (!state.jwt) {
+        await new Promise(resolve => setTimeout(resolve, 100))
+      }
+      const cachedProducts = await loadProductsFromCache()
+      if (cachedProducts.length) {
+        state.products = cachedProducts
         state.loadingProducts = false
-      }, 1000);
+      }
+      const products = await getProductsByCategory()
+      state.products = products
+      saveProductsToCache(products)
+      state.loadingProducts = false
     },
     async fetchOrders({ state }) {
       state.loadingOrders = true
